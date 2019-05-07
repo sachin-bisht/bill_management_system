@@ -1,0 +1,20 @@
+{% extends "bill/base.html" %}
+
+{% block content %}
+<div class="bill">
+    {% if bill.created_at %}
+        <div class="date">
+            {{ bill.created_at }}
+        </div>
+    {% endif %}
+
+    <h2 style="display: inline-block;">{{ bill.bill_name }}</h2>
+
+    <a class="btn btn-default" style="margin-left: 20px; " href="{% url 'bill_edit' pk=bill.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+    <p>Bill amount : {{ bill.bill_amount|linebreaksbr }}</p>
+    <p>Due date : {{ bill.bill_due_date|linebreaksbr }}</p>
+    <p>Reminder hour : {{ bill.bill_time|linebreaksbr }}</p>
+    <p>Active : {{ bill.active|linebreaksbr }}</p>
+</div>
+{% endblock %}

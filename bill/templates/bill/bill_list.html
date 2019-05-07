@@ -1,0 +1,10 @@
+{% extends "bill/base.html" %}
+
+{% block content %}
+{% for bill in bills %}
+    <div class="post">
+        <h1><a href="{% url 'bill_detail' pk=bill.pk %}">{{ bill.bill_name }}</a></h1>
+    </div>
+{% endfor %}
+
+{% endblock %}

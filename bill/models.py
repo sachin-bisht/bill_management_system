@@ -15,7 +15,7 @@ class BillManager(models.Manager):
 
 class Bill(BaseModel):
     bill_name = models.CharField(max_length=300, help_text='Name of the Bill (Office Rent, Electricity Bill, etc.)')
-    bill_amount = models.DecimalField(max_digits=30, decimal_places=20, null=True, blank=True)
+    bill_amount = models.DecimalField(max_digits=20, decimal_places=5, null=True, blank=True)
     bill_due_date = models.IntegerField(
         validators=[MaxValueValidator(28), MinValueValidator(1)],
         help_text='Enter date b/w 1 and 28'
@@ -26,8 +26,8 @@ class Bill(BaseModel):
         help_text='Enter value in 24 hour format')
     active = models.BooleanField(default=True)
 
-    def __str__(self):
-        return str(self.id) + '->' + str(self.bill_name)
-
     objects = models.Manager()
     BillManager = BillManager()
+
+    def __str__(self):
+        return str(self.bill_name)
